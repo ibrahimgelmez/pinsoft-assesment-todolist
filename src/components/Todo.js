@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from "react";
 //firebase
-import { doc, deleteDoc, addDoc, collection } from "firebase/firestore";
+import { doc, deleteDoc, addDoc, collection, getTodos } from "firebase/firestore";
 import { db } from "../services/firebase.config";
 
 const Todo = () => {
   const [createTodo, setCreateTodo] = useState("");
+  const [todos, setTodos] = useState([]);
   const collectionRef = collection(db, "todos");
+
+  //fetching
+  useEffect(() => {
+      async function getTodos(){
+        await getDocs(collectionRef).then((todo) => {
+        let todosData = todo.docs.map((doc) => ({...doc.data(), id: doc.id}));
+        setTodos(todosData);
+          })
+      }
+      getTodos();
+  }, []);
 
   //create todo
   const addTodo = async (e) => {
