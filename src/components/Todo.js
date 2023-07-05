@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from "react";
 //firebase
-import { doc, deleteDoc, addDoc, collection, getTodos } from "firebase/firestore";
+import {
+  doc,
+  deleteDoc,
+  addDoc,
+  collection,
+  getTodos,
+  getDocs,
+} from "firebase/firestore";
 import { db } from "../services/firebase.config";
+import TodoLayout from "./TodoLayout";
+import EditTodo from "./EditTodo";
 
 const Todo = () => {
   const [createTodo, setCreateTodo] = useState("");
   const [todos, setTodos] = useState([]);
   const collectionRef = collection(db, "todos");
 
+  console.log(todos);
+
   //fetching
   useEffect(() => {
-      async function getTodos(){
-        await getDocs(collectionRef).then((todo) => {
-        let todosData = todo.docs.map((doc) => ({...doc.data(), id: doc.id}));
+    async function getTodos() {
+      await getDocs(collectionRef).then((todo) => {
+        let todosData = todo.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
         setTodos(todosData);
-          })
-      }
-      getTodos();
+      });
+    }
+    getTodos();
   }, []);
 
   //create todo
@@ -25,7 +36,7 @@ const Todo = () => {
 
     try {
       await addDoc(collectionRef, {
-        task: createTodo,
+        todo: createTodo,
         isChecked: false,
       });
       window.location.reload();
@@ -99,6 +110,15 @@ const Todo = () => {
         </div>
       </div>
       {/* CREATE TODO */}
+
+      {todos.map((todo) => (
+        <TodoLayout
+          todo={todo.todo}
+          id={todo.id}
+          isChecked={todo.isChecked}
+          deleteHandler={deleteTodoHandler}
+        />
+      ))}
 
       {/* <button onClick={()=> deleteTodoHandler('databaseden veri çekilme fonksiyonu bittiğinde buraya id gelecek')}>
         Delete DB
