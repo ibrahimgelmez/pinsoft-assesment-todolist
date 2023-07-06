@@ -1,10 +1,12 @@
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(
+    90deg,
+    rgb(54, 49, 90) 0%,
+    rgb(115, 121, 179) 50%,
+    rgb(54, 49, 90) 100%
+  );
+  
 }
 
 code {
@@ -12,9 +14,107 @@ code {
     monospace;
 }
 
+.App{
+  display: flex;
+  justify-content: center;
+}
+.todo-app{
+  margin-top: 48px;
+  padding: 96px;
+  border-radius: 16px;
+  background-color: #161a2c;
+}
+
 .todo-container{
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 10px;
+  padding: 3px 12px;
+  border-radius: 8px;
+  color: white;
+  background-color:rgb(67, 38, 103);
+}
+.todo-container:nth-child(2n + 1) {
+  background-color: rgb(73, 52, 133);
 }
 
+.add-button-container{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+
+.addtodo-button{
+  font-size: 24px;
+}
+
+.del-button{
+  background-color: transparent;
+  color: white;
+  border-radius: 8px;
+  border: none;
+}
+.del-button:hover{
+  color: rgb(144, 16, 16);
+}
+
+.edittodo-button{
+  margin-left: 6px;
+  color: white;
+  font-size: 20px;
+}
+
+.edittodo-button:hover{
+  color: green;
+}
+
+.normal-text{
+  width: 500px;
+  margin-left: 18px;
+}
+
+.loading-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 96px;
+}
+
+.welcome-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin:160px ;
+}
+
+.login-inputs{
+  display: flex;
+  flex-direction: column;
+  width: 290px;
+  
+}
+
+.input-1{
+  margin-bottom: 6px;
+  height: 44px;
+  border-radius: 8px;
+  font-size:16px;
+  font-weight:bold;
+  padding-left: 6px;
+}
+.input-2{
+  margin-top: 6px;
+  height: 44px;
+  margin-bottom: 24px;
+  border-radius: 8px;
+  font-size:16px;
+  font-weight:bold;
+  padding-left: 6px;
+}
+
+.logout-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 48px;
+}

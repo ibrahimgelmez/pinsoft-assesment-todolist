@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { doc, updateDoc } from 'firebase/firestore'
 import { db } from '../services/firebase.config'
+import {AiOutlineEdit} from 'react-icons/ai'
 
 const EditTodo = ({ todo, id }) => {
 
@@ -25,10 +26,10 @@ const EditTodo = ({ todo, id }) => {
     <>
       <button
         type="button"
-        className="btn btn-primary"
+        className="edittodo-button btn "
         data-bs-toggle="modal"
         data-bs-target={`#id${id}`}      >
-        Edit Todo
+        <AiOutlineEdit size={28} />
       </button>
 
       <div
