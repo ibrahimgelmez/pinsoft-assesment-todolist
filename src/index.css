@@ -118,3 +118,17 @@ code {
   justify-content: center;
   margin-top: 48px;
 }
+
+.completed-text{
+  width: 500px;
+  margin-left: 18px;
+  text-decoration: line-through;
+  color: rgb(9, 159, 21);
+}
+
+.check {
+  background-color: transparent;
+  border: none;
+  color: white;
+  margin-right: 8px;
+}
