@@ -127,6 +127,7 @@ export default function Welcome() {
               className="input-2"
               onChange={passwordHandler}
               value={password}
+              type="password"
             />
           </div>
           <Button onClick={() => signInHandler()} variant="contained">
