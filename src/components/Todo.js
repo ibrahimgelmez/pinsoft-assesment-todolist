@@ -20,21 +20,35 @@ const Todo = () => {
   const [todos, setTodos] = useState([]);
   const collectionRef = collection(db, "todos");
 
-
-  console.log(todos);
-
   const navigation = useNavigate();
 
   //fetching
   useEffect(() => {
     async function getTodos() {
-      await getDocs(collectionRef).then((todo) => {
-        let todosData = todo.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-        const sortedTodosData = todosData.sort((a, b) => {
-          return b.createdAt - a.createdAt;
+      await getDocs(collectionRef)
+        .then((todo) => {
+          let filteredTodos = todo.docs.filter(
+            (todo) => todo.data().uid === auth.currentUser.uid
+          );
+          console.log(filteredTodos);
+          let todosData = filteredTodos.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }));
+          const sortedTodosData = todosData.sort((a, b) => {
+            return b.createdAt - a.createdAt;
+          });
+          setTodos(sortedTodosData);
+        })
+        .catch(() => {
+          // if (
+          //   window.confirm(
+          //     "You must be logged in to access your todos.Do you want to go to login section?"
+          //   )
+          // ) {
+          //   window.location.href = "/";
+          // }
         });
-        setTodos(sortedTodosData);
-      });
     }
     getTodos();
   }, []);
@@ -48,6 +62,7 @@ const Todo = () => {
         todo: createTodo,
         isChecked: false,
         createdAt: serverTimestamp(),
+        uid: auth.currentUser.uid,
       });
       window.location.reload();
     } catch (error) {
@@ -83,6 +98,20 @@ const Todo = () => {
   //     console.log(err);
   //   }
   // };
+  console.log(auth.currentUser);
+  if (auth.currentUser == null) {
+    return (
+      <div className="no-login-container">
+        <h1 className="no-login-title">
+          You must be logged in to access your todos.Do you want to go to login
+          section?
+        </h1>
+        <a className="no-login-link" href="/">
+          <h1>Go to Login Page</h1>
+        </a>
+      </div>
+    );
+  }
 
   if (todos.length === 0) {
     return (
@@ -221,6 +250,7 @@ const Todo = () => {
           id={todo.id}
           isChecked={todo.isChecked}
           deleteHandler={deleteTodoHandler}
+          key={todo.id}
         />
       ))}
       <div className="logout-container">
