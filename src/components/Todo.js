@@ -5,7 +5,6 @@ import {
   deleteDoc,
   addDoc,
   collection,
-  getTodos,
   getDocs,
   serverTimestamp,
 } from "firebase/firestore";
@@ -20,6 +19,7 @@ const Todo = () => {
   const [createTodo, setCreateTodo] = useState("");
   const [todos, setTodos] = useState([]);
   const collectionRef = collection(db, "todos");
+
 
   console.log(todos);
 
@@ -69,6 +69,20 @@ const Todo = () => {
     await deleteDoc(todosRef);
     window.location.reload();
   }
+
+  // //update Checked
+  // const updateChecked = async (e, id , isCompleted) => {
+  //   e.preventDefault()
+  //   try {
+  //     const todoDocument = doc(db, "todos", id);
+  //     await updateDoc(todoDocument, {
+  //       isChecked: isCompleted,
+  //     });
+  //     // await window.location.reload();
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   if (todos.length === 0) {
     return (

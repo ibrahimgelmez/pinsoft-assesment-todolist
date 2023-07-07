@@ -1,12 +1,42 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import EditTodo from "./EditTodo";
-import { BiTrash } from "react-icons/bi";
 
-export default function TodoLayout({ todo, id, deleteHandler, isChecked }) {
+//firebase
+import { doc,updateDoc } from "firebase/firestore";
+import { db } from "../services/firebase.config";
+
+//icons
+import { BiTrash } from "react-icons/bi";
+import { BsCheckCircle, BsCheckCircleFill } from "react-icons/bs";
+
+export default function TodoLayout({
+  todo,
+  id,
+  deleteHandler,
+  isChecked,
+}) {
+  const [isCompleted, setIsCompleted] = useState(isChecked);
+
+  useEffect(() => {
+
+    try {
+      const todoDocument = doc(db, "todos", id);
+      updateDoc(todoDocument, {
+        isChecked: isCompleted,
+      });
+      // await window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  }, [isCompleted]);
+
+
   return (
     <div className="todo-container">
-      <input type="checkbox" />
-      <h3 className={isChecked ? "completed-text" : "normal-text"}>{todo}</h3>
+      <button className="check" onClick={()=>setIsCompleted(prev => !prev)}>
+        {isCompleted ? <BsCheckCircleFill size={22} /> : <BsCheckCircle size={22} />}
+      </button>
+      <h3 className={isCompleted ? "completed-text" : "normal-text"}>{todo}</h3>
       <div>
         <button
           className="del-button"
