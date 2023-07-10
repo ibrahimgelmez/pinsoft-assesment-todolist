@@ -1,31 +1,44 @@
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
 
-body {
+.App {
+  display: flex;
+  justify-content: center;
   background: linear-gradient(
     90deg,
     rgb(54, 49, 90) 0%,
     rgb(115, 121, 179) 50%,
     rgb(54, 49, 90) 100%
   );
-  
+  height: 100vh;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-.App{
+.App-light {
   display: flex;
   justify-content: center;
+  background-color: #67B7D1;
+  height: 100vh;
 }
-.todo-app{
+.todo-app {
   margin-top: 48px;
   padding: 96px;
   border-radius: 16px;
   background-color: #161a2c;
 }
-
-.todo-container{
+.todo-app-light {
+  margin-top: 48px;
+  padding: 96px;
+  border-radius: 16px;
+  background-color: #8ac7db;
+}
+.dark-mode{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  
+}
+.todo-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -33,93 +46,112 @@ code {
   padding: 3px 12px;
   border-radius: 8px;
   color: white;
-  background-color:rgb(67, 38, 103);
+  background-color: rgb(67, 38, 103);
+}
+.todo-container-light {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 3px 12px;
+  border-radius: 8px;
+  color: white;
+  background-color: #338ba8;
 }
 .todo-container:nth-child(2n + 1) {
   background-color: rgb(73, 52, 133);
 }
-
-.add-button-container{
+.todo-container-light:nth-child(2n + 1) {
+  background-color: #43a6c6;
+}
+.add-button-container {
   display: flex;
   justify-content: center;
   margin-bottom: 36px;
 }
 
-.addtodo-button{
+.addtodo-button {
   font-size: 24px;
 }
 
-.del-button{
+.del-button {
   background-color: transparent;
   color: white;
   border-radius: 8px;
   border: none;
 }
-.del-button:hover{
+.del-button:hover {
   color: rgb(144, 16, 16);
 }
 
-.edittodo-button{
+.edittodo-button {
   margin-left: 6px;
   color: white;
   font-size: 20px;
 }
 
-.edittodo-button:hover{
+.edittodo-button:hover {
   color: green;
 }
 
-.normal-text{
+.normal-text {
   width: 500px;
   margin-left: 18px;
 }
 
-.loading-container{
+.loading-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-top: 96px;
 }
 
-.welcome-container{
+.welcome-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin:160px ;
+  padding: 180px;
+  background: linear-gradient(
+    90deg,
+    rgb(54, 49, 90) 0%,
+    rgb(115, 121, 179) 50%,
+    rgb(54, 49, 90) 100%
+  );
+  height: 100vh;
 }
 
-.login-inputs{
+.inputs {
   display: flex;
   flex-direction: column;
   width: 290px;
-  
 }
 
-.input-1{
+
+.input-1 {
   margin-bottom: 6px;
   height: 44px;
   border-radius: 8px;
-  font-size:16px;
-  font-weight:bold;
+  font-size: 16px;
+  font-weight: bold;
   padding-left: 6px;
 }
-.input-2{
+.input-2 {
   margin-top: 6px;
   height: 44px;
   margin-bottom: 24px;
   border-radius: 8px;
-  font-size:16px;
-  font-weight:bold;
+  font-size: 16px;
+  font-weight: bold;
   padding-left: 6px;
 }
 
-.logout-container{
+.logout-container {
   display: flex;
   justify-content: center;
   margin-top: 48px;
 }
 
-.completed-text{
+.completed-text {
   width: 500px;
   margin-left: 18px;
   text-decoration: line-through;
@@ -133,7 +165,7 @@ code {
   margin-right: 8px;
 }
 
-.no-login-container{
+.no-login-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -142,21 +174,38 @@ code {
   margin-top: 15%;
 }
 
-.no-login-title{
+.no-login-title {
   background-color: rgb(30, 30, 30);
   color: aquamarine;
   padding: 8px;
   border-radius: 6px;
 }
 
-.no-login-link{
-  color: aquamarine ;
-  background-color:rgb(30, 30, 30) ;
+.no-login-link {
+  color: aquamarine;
+  background-color: rgb(30, 30, 30);
   margin-top: 36px;
   padding: 12px 18px;
   border-radius: 10px;
 }
-.no-login-link:hover{
-  color:rgb(30, 30, 30) ;
-  background-color: aquamarine ;
+.no-login-link:hover {
+  color: rgb(30, 30, 30);
+  background-color: aquamarine;
+}
+
+.register-title{
+  margin-bottom: 24px;
+  font-size: 48px;
+  color: white;
+  padding: 10px 96px;
+  border-radius: 12px;
+  background-color: rgb(79, 2, 82);
+}
+.login-title{
+  margin-bottom: 24px;
+  font-size: 48px;
+  color: white;
+  padding: 10px 96px;
+  border-radius: 12px;
+  background-color: rgb(18, 18, 18);
 }
