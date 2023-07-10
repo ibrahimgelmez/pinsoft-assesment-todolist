@@ -14,6 +14,7 @@ export default function TodoLayout({
   id,
   deleteHandler,
   isChecked,
+  darkMode
 }) {
   const [isCompleted, setIsCompleted] = useState(isChecked);
 
@@ -32,7 +33,7 @@ export default function TodoLayout({
 
 
   return (
-    <div className="todo-container">
+    <div className={darkMode ? "todo-container":"todo-container-light"}>
       <button className="check" onClick={()=>setIsCompleted(prev => !prev)}>
         {isCompleted ? <BsCheckCircleFill size={22} /> : <BsCheckCircle size={22} />}
       </button>

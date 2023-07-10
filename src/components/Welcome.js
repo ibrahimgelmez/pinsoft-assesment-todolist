@@ -8,6 +8,9 @@ import {
 import { auth } from "../services/firebase.config";
 import { useNavigate } from "react-router-dom";
 
+//icons
+import { FaLongArrowAltLeft } from "react-icons/fa";
+
 export default function Welcome() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,7 +56,11 @@ export default function Welcome() {
       alert("Passwords not same.Please check passwords.");
       return;
     }
-    createUserWithEmailAndPassword(auth, registerInformation.email, registerInformation.password)
+    createUserWithEmailAndPassword(
+      auth,
+      registerInformation.email,
+      registerInformation.password
+    )
       .then(() => {
         navigate("/homepage");
       })
@@ -67,70 +74,93 @@ export default function Welcome() {
     <div className="welcome-container">
       {isRegistering ? (
         <>
-          <input
-            type="email"
-            placeholder="Email"
-            value={registerInformation.email}
-            onChange={(e) =>
-              setRegisterInformation({
-                ...registerInformation,
-                email: e.target.value,
-              })
-            }
-          />
-          <input
-            type="email"
-            placeholder="Confirm Email"
-            value={registerInformation.confirmEmail}
-            onChange={(e) =>
-              setRegisterInformation({
-                ...registerInformation,
-                confirmEmail: e.target.value,
-              })
-            }
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={registerInformation.password}
-            onChange={(e) =>
-              setRegisterInformation({
-                ...registerInformation,
-                password: e.target.value,
-              })
-            }
-          />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={registerInformation.confirmPassword}
-            onChange={(e) =>
-              setRegisterInformation({
-                ...registerInformation,
-                confirmPassword: e.target.value,
-              })
-            }
-          />
-          <Button onClick={() => handleRegister()} variant="contained">
+          <h1 className="register-title">Register</h1>
+          <div className="inputs">
+            <input
+              className="input-1"
+              type="email"
+              placeholder="Email"
+              value={registerInformation.email}
+              onChange={(e) =>
+                setRegisterInformation({
+                  ...registerInformation,
+                  email: e.target.value,
+                })
+              }
+            />
+            <input
+              className="input-1"
+              type="email"
+              placeholder="Confirm Email"
+              value={registerInformation.confirmEmail}
+              onChange={(e) =>
+                setRegisterInformation({
+                  ...registerInformation,
+                  confirmEmail: e.target.value,
+                })
+              }
+            />
+            <input
+              className="input-1"
+              type="password"
+              placeholder="Password"
+              value={registerInformation.password}
+              onChange={(e) =>
+                setRegisterInformation({
+                  ...registerInformation,
+                  password: e.target.value,
+                })
+              }
+            />
+            <input
+              className="input-1"
+              type="password"
+              placeholder="Confirm Password"
+              value={registerInformation.confirmPassword}
+              onChange={(e) =>
+                setRegisterInformation({
+                  ...registerInformation,
+                  confirmPassword: e.target.value,
+                })
+              }
+            />
+          </div>
+
+          <Button
+            style={{ marginTop: "12px", marginBottom: "12px" }}
+            onClick={() => handleRegister()}
+            variant="contained"
+            size="large"
+          >
             Register
           </Button>
-          <Button onClick={() => setIsRegistering(false)} variant="contained">
-            go Back
+          <Button onClick={() => setIsRegistering(false)} size="small" class='btn btn-primary' variant="contained">
+            <FaLongArrowAltLeft
+              color="white"
+              style={{ marginRight: "6px" }}
+              size={16}
+            />
+            Go Back
           </Button>
         </>
       ) : (
         <>
-          <h1>Login</h1>
-          <div className="login-inputs">
-            <input className="input-1" onChange={emailHandler} value={email} />
+          <h1 className="login-title">Login</h1>
+          <div className="inputs">
+            <input className="input-1" placeholder="Email" onChange={emailHandler} value={email} />
             <input
+            placeholder="Password"
               className="input-2"
               onChange={passwordHandler}
               value={password}
               type="password"
             />
           </div>
-          <Button onClick={() => signInHandler()} variant="contained">
+          <Button
+            style={{ marginBottom: "10px" }}
+            onClick={() => signInHandler()}
+            variant="contained"
+          >
             Login
           </Button>
           <Button onClick={() => setIsRegistering(true)} variant="contained">
