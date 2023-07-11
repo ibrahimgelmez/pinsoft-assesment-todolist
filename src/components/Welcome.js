@@ -69,7 +69,6 @@ export default function Welcome() {
       });
   }
 
-  console.log(registerInformation.email);
   return (
     <div className="welcome-container">
       {isRegistering ? (
