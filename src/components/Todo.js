@@ -13,20 +13,20 @@ import TodoLayout from "./TodoLayout";
 import { Button, Switch } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-import {BsFillMoonFill , BsFillSunFill} from 'react-icons/bs'
+import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 
 import { signOut } from "firebase/auth";
 
-const Todo = ({darkMode , setDarkMode}) => {
+const Todo = ({ darkMode, setDarkMode }) => {
   const [createTodo, setCreateTodo] = useState("");
   const [todos, setTodos] = useState([]);
   const collectionRef = collection(db, "todos");
 
-  const [todoLoading,setTodoLoading] = useState()
-
-
+  const [loadingTodos, setLoadingTodos] = useState(true);
 
   const navigation = useNavigate();
+
+  console.log(window.location.href);
 
   //fetching
   useEffect(() => {
@@ -36,7 +36,6 @@ const Todo = ({darkMode , setDarkMode}) => {
           let filteredTodos = todo.docs.filter(
             (todo) => todo.data().uid === auth.currentUser.uid
           );
-          console.log(filteredTodos);
           let todosData = filteredTodos.map((doc) => ({
             ...doc.data(),
             id: doc.id,
@@ -45,6 +44,7 @@ const Todo = ({darkMode , setDarkMode}) => {
             return b.createdAt - a.createdAt;
           });
           setTodos(sortedTodosData);
+          setLoadingTodos(false);
         })
         .catch(() => {
           if (
@@ -104,8 +104,10 @@ const Todo = ({darkMode , setDarkMode}) => {
   //     console.log(err);
   //   }
   // };
-  console.log(auth.currentUser);
-
+  console.log(todos);
+  if (loadingTodos) {
+    return <h1>Loading...</h1>;
+  }
 
   if (todos.length === 0) {
     return (
@@ -170,7 +172,7 @@ const Todo = ({darkMode , setDarkMode}) => {
           </div>
         </div>
         {/* CREATE TODO */}
-        <h1 className="loading-screen">Loading Todos</h1>
+        <h1 className="loading-screen">You Have Not Any Todo</h1>
       </div>
     );
   }
@@ -178,16 +180,23 @@ const Todo = ({darkMode , setDarkMode}) => {
   return (
     <div className={darkMode ? "todo-app" : "todo-app-light"}>
       <div className="dark-mode">
-        <BsFillSunFill color={darkMode ? "yellow":"white"} size={22} />
-        <Switch onClick={() => setDarkMode((prev) => !prev)} value={darkMode} />
-        <BsFillMoonFill color={darkMode ? 'white':'black'} size={18} />
+        <BsFillSunFill color={darkMode ? "yellow" : "white"} size={22} />
+        <Switch
+          checked={darkMode}
+          onClick={() => setDarkMode((prev) => !prev)}
+        />
+        <BsFillMoonFill color={darkMode ? "white" : "black"} size={18} />
       </div>
       {/* CREATE TODO */}
       {/* Modal açan button */}
       <div className="add-button-container">
         <button
           type="button"
-          className={darkMode ? "addtodo-button btn btn-primary":"addtodo-button btn btn-info border-1 border-white "}
+          className={
+            darkMode
+              ? "addtodo-button btn btn-primary"
+              : "addtodo-button btn btn-info border-1 border-white "
+          }
           data-bs-toggle="modal"
           data-bs-target="#addTodo"
         >
@@ -255,7 +264,7 @@ const Todo = ({darkMode , setDarkMode}) => {
       ))}
       <div className="logout-container">
         <Button
-          variant={darkMode ? "outlined":"contained"}
+          variant={darkMode ? "outlined" : "contained"}
           color="error"
           className="log-out"
           onClick={() => logOutHandler()}
