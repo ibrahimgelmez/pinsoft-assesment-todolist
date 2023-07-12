@@ -26,7 +26,6 @@ const Todo = ({ darkMode, setDarkMode }) => {
 
   const navigation = useNavigate();
 
-  console.log(window.location.href);
 
   //fetching
   useEffect(() => {
@@ -91,22 +90,10 @@ const Todo = ({ darkMode, setDarkMode }) => {
     window.location.reload();
   }
 
-  // //update Checked
-  // const updateChecked = async (e, id , isCompleted) => {
-  //   e.preventDefault()
-  //   try {
-  //     const todoDocument = doc(db, "todos", id);
-  //     await updateDoc(todoDocument, {
-  //       isChecked: isCompleted,
-  //     });
-  //     // await window.location.reload();
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-  console.log(todos);
-  if (loadingTodos) {
-    return <h1>Loading...</h1>;
+
+
+  if (todos && loadingTodos) {
+    return <h1>Loading</h1>;
   }
 
   if (todos.length === 0) {
@@ -172,13 +159,16 @@ const Todo = ({ darkMode, setDarkMode }) => {
           </div>
         </div>
         {/* CREATE TODO */}
-        <h1 className="loading-screen">You Have Not Any Todo</h1>
+        <h1 className="loading-screen">You Have Not Any Todo.</h1>
       </div>
     );
   }
 
   return (
     <div className={darkMode ? "todo-app" : "todo-app-light"}>
+      {/* {todos.every((todo) => todo.isChecked === true) && (
+        <Confetti width={window.innerWidth} height={window.innerHeight} />
+      )} */}
       <div className="dark-mode">
         <BsFillSunFill color={darkMode ? "yellow" : "white"} size={22} />
         <Switch
