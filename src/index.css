@@ -272,7 +272,7 @@ body {
     overflow-y: hidden;
   }
   .completed-text {
-    width: 200px;
+    width: 190px;
     margin-left: 18px;
     text-decoration: line-through;
     color: rgb(19, 132, 29);
