@@ -133,7 +133,7 @@ export default function Welcome() {
           >
             Register
           </Button>
-          <Button onClick={() => setIsRegistering(false)} size="small" class='btn btn-primary' variant="contained">
+          <Button onClick={() => setIsRegistering(false)} size="small" class='btn btn-primary' style={{minWidth:'150px'}} variant="contained">
             <FaLongArrowAltLeft
               color="white"
               style={{ marginRight: "6px" }}
@@ -162,7 +162,7 @@ export default function Welcome() {
           >
             Login
           </Button>
-          <Button onClick={() => setIsRegistering(true)} variant="contained">
+          <Button onClick={() => setIsRegistering(true)} style={{minWidth:'200px'}} variant="contained">
             Create An Account
           </Button>
         </>

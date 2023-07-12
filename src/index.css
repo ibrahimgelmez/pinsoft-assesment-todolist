@@ -2,6 +2,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+body {
+  overflow: hidden;
+}
 
 .App {
   display: flex;
@@ -19,7 +22,7 @@ code {
 .App-light {
   display: flex;
   justify-content: center;
-  background-color: #67B7D1;
+  background-color: #67b7d1;
   height: 100vh;
   overflow: scroll;
   overflow-x: hidden;
@@ -36,11 +39,10 @@ code {
   border-radius: 16px;
   background-color: #8ac7db;
 }
-.dark-mode{
+.dark-mode {
   display: flex;
   align-items: center;
   justify-content: right;
-  
 }
 .todo-container {
   display: flex;
@@ -101,6 +103,8 @@ code {
 .normal-text {
   width: 500px;
   margin-left: 18px;
+  overflow: auto;
+  overflow-y: hidden;
 }
 
 .loading-container {
@@ -129,7 +133,6 @@ code {
   flex-direction: column;
   width: 290px;
 }
-
 
 .input-1 {
   margin-bottom: 6px;
@@ -160,6 +163,9 @@ code {
   margin-left: 18px;
   text-decoration: line-through;
   color: rgb(19, 132, 29);
+  overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .check {
@@ -197,7 +203,7 @@ code {
   background-color: aquamarine;
 }
 
-.register-title{
+.register-title {
   margin-bottom: 24px;
   font-size: 48px;
   color: white;
@@ -205,11 +211,73 @@ code {
   border-radius: 12px;
   background-color: rgb(79, 2, 82);
 }
-.login-title{
+.login-title {
   margin-bottom: 24px;
   font-size: 48px;
   color: white;
   padding: 10px 96px;
   border-radius: 12px;
   background-color: rgb(18, 18, 18);
+}
+
+/* Responsive */
+
+@media screen and (max-width: 420px) {
+  .todo-app-light {
+    padding-top: 20px;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: transparent;
+    height: 100%;
+  }
+  .normal-text {
+    width: 200px;
+    margin-left: 18px;
+    overflow: auto;
+    overflow-y: hidden;
+  }
+  .completed-text {
+    width: 200px;
+    margin-left: 18px;
+    text-decoration: line-through;
+    color: rgb(19, 132, 29);
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .todo-app-light {
+    padding-top: 20px;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: transparent;
+    height: 100%;
+  }
+  .App{
+    background:#161a2c ;
+  }
+  .todo-app {
+    padding-top: 20px;
+    padding: 20px;
+    border-radius: 16px;
+    background-color: #161a2c;
+    height: 100%;
+  }
+  .normal-text {
+    width: 190px;
+    margin-left: 18px;
+    overflow: auto;
+    overflow-y: hidden;
+  }
+  .completed-text {
+    width: 200px;
+    margin-left: 18px;
+    text-decoration: line-through;
+    color: rgb(19, 132, 29);
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
 }
